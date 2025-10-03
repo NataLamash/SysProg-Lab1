@@ -1,16 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -Wextra -O2
+LDFLAGS = -lpcreposix -lpcre
 
-TARGET = lexer
 SRC = lexer.c
+OUT = lexer.exe
+TEST = Demo.java
 
-all: $(TARGET)
+all: $(OUT)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+$(OUT): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LDFLAGS)
 
-run: $(TARGET)
-	./$(TARGET) Demo.java
+run: $(OUT)
+	./$(OUT) $(TEST)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(OUT)
